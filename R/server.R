@@ -1,15 +1,23 @@
 
+rm(list =ls())
+
+
 library(shiny)
 library(dplyr)
 library(countrycode)
 
-rawData <- read.csv("C:/Arbeitsordner/R/fifaDaten/data/results.csv")
+path <- "C:/Arbeitsordner/R/fifaDaten/data/results.csv"
+
+
+rawData <- read.csv(path)
 
 rawData <- rawData %>%
   mutate(date = as.Date(date, format = "%Y-%m-%d"))
 
-couCon <- codelist %>%
-  select(country.name.en, continent)
+#couCon <- codelist %>%
+#  select(country.name.en, continent)
+
+
 
 home <- rawData
 colnames(home) <- c("date", "Mannschaft", "Gegner", "Tore", "Gegentore", "Tunier", "Stadt", "Land")
@@ -22,12 +30,8 @@ away$heim <- 0
 
 data <- union(home, away)
 
-
-data[data$date == "1985-03-01", ]
-merge(rawData, couCon, by.x = "home_team", )
-
-
-summary(rawData)
+#couCon <- codelist %>%
+#  select(country.name.en, continent)
 
 
 
