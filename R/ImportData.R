@@ -8,8 +8,6 @@ ImportData <- function(path){
   #couCon <- codelist %>%
   #  select(country.name.en, continent)
 
-
-
   home <- rawData
   colnames(home) <- c("date", "Mannschaft", "Gegner", "Tore", "Gegentore", "Tunier", "Stadt", "Land")
   home$heim <- 1
@@ -19,8 +17,7 @@ ImportData <- function(path){
   colnames(away) <- c("date", "Gegner", "Mannschaft", "Gegentore",  "Tore", "Tunier", "Stadt", "Land")
   away$heim <- 0
 
-  data <- union(home, away)
-
+  assign("data", as.data.frame(union(home, away)), envir = .GlobalEnv)
 
 }
 
