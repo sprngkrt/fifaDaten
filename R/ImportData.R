@@ -17,6 +17,9 @@ ImportData <- function(path){
   colnames(away) <- c("date", "Gegner", "Mannschaft", "Gegentore",  "Tore", "Tunier", "Stadt", "Land")
   away$heim <- 0
 
+ # data$Ergebnis <- data %>%
+  #  if_else("Tore" == Gegentore, "Sieg",  if_else(Tore < Gegentore, "Niederlage", "Unentschieden"))
+
   assign("data", as.data.frame(union(home, away)), envir = .GlobalEnv)
 
 }

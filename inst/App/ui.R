@@ -1,5 +1,5 @@
 
-
+teams <- sort(unique(data$Mannschaft))
 
 pageWithSidebar(
   headerPanel('Iris k-means clustering'),
@@ -9,7 +9,7 @@ pageWithSidebar(
     sliderInput("jahr", "Zeitraum", 1872, 2014, value = c(1950, 2014))),
 
   mainPanel(
-    plotOutput("plot1"),
-    plotOutput("plot2")
+    plotOutput("plot1")
+  #  plotOutput("plot2")
   )
 )
