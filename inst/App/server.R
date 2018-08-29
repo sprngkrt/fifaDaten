@@ -5,22 +5,21 @@ library(dplyr)
 library(countrycode)
 
 getwd()
-source("R/ImportData.R")
+source("../../R/ImportData.R", local = TRUE)
 
-ImportData("extdata/results.csv")
-
-
-teams <- sort(unique(data$Mannschaft))
+ImportData("../../extdata/results.csv")
 
 
-data$Ergebnis <- data %>%
-  if_else("Tore" == Gegentore, "Sieg",  if_else(Tore < Gegentore, "Niederlage", "Unentschieden"))
+
 
 function(input, output, session) {
 
 
+
   # Combine the selected variables into a new data frame
-  Spiele <- reactive({
+
+
+    Spiele <- reactive({
     data %>%
      filter(Mannschaft == input$man1,
             Gegner == input$man2) %>%
@@ -32,14 +31,14 @@ function(input, output, session) {
   })
 
 
-  Ergebnisse <- reactive({
-    Spiele() %>%
-      select("Ergebnis") %>%
-      table()
-  })
+ # Ergebnisse <- reactive({
+  #  Spiele() %>%
+   #   select("Ergebnis") %>%
+    #  table()
+#  })
 
-    output$plot2 <- renderTable({
-      Ergebnisse()
-      })
+ #   output$plot2 <- renderTable({
+  #    Ergebnisse()
+   #   })
 }
 
